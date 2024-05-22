@@ -27,17 +27,14 @@ def check_scheduled_task(file_path, config):
         if 'CALL_TIME' in df.columns:
             column_list = df['CALL_TIME'].tolist()
             CALL_TIME_LIST = [time_obj.strftime('%H:%M') for time_obj in column_list]
-            
-                
-                if current_time in CALL_TIME_LIST:
-                    logger.info(f"There Exist  Task for {current_time}")
-                    filter_df = df.iloc[CALL_TIME_LIST.index(current_time)]
-                    Message = filter_df['MESSAGE']
-                    calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=Message, to=to, from_=from_)
+            if current_time in CALL_TIME_LIST:
+               logger.info(f"There Exist  Task for {current_time}")
+               filter_df = df.iloc[CALL_TIME_LIST.index(current_time)]
+               Message = filter_df['MESSAGE']
+               calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=Message, to=to, from_=from_)
     
-                else:
-                    logger.info(
-                        f"No task scheduled for the this time,and day-{current_time, current_day}")  # No task scheduled for the current time
+            else:
+               logger.info(f"No task scheduled for the this time,and day-{current_time, current_day}")  # No task scheduled for the current time
          time.sleep(60)
 
 
