@@ -35,7 +35,7 @@ def check_scheduled_task(file_path, config):
     
             else:
                logger.info(f"No task scheduled for the this time,and day-{current_time, current_day}")  # No task scheduled for the current time
-         time.sleep(60)
+        time.sleep(60)
 
 
 def calling_on_phone(Message, account_sid, auth_token, to, from_):
