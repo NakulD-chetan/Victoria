@@ -1,0 +1,6 @@
+loguru
+configparser
+twilio
+requests
+pandas
+datetime
