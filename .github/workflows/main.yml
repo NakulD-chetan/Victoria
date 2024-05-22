@@ -3,10 +3,6 @@ name: Run Python Script Every Hour
 on:
   schedule:
     - cron: '0 * * * *'  # This cron expression means the script will run every hour
-  push:
-    branches:
-      - main  # This ensures the workflow also runs on every push to the main branch
-
 jobs:
   run-script:
     runs-on: ubuntu-latest
