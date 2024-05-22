@@ -3,6 +3,7 @@ from datetime import datetime
 from loguru import logger
 from twilio.rest import Client
 import pandas as pd
+import pytz
 from configparser import ConfigParser
 
 
@@ -16,10 +17,15 @@ def check_scheduled_task(file_path, config):
     url = config['Twilio']['url']
     to = config['Twilio']['to_phone']
     from_ = config['Twilio']['from_phone']
+    local_tz = pytz.timezone('Asia/Kolkata')
+
     # Get current day and time
     while True:
-        current_time=datetime.now().strftime('%H:%M')
-        current_day = datetime.today().strftime('%A').upper()
+        utc_time = datetime.now(pytz.utc)
+        # Convert UTC time to local time
+        local_time = utc_time.astimezone(local_tz)
+        current_time = local_time.strftime('%H:%M')
+        current_day = local_time.strftime('%A').upper()
         # Read Excel file for the current day's sheet
         df = pd.read_excel(file_path, usecols=columns, sheet_name=current_day, index_col=index)
     
