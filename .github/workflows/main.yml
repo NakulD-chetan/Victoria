@@ -2,7 +2,7 @@ name: Run Python Script Every Hour
 
 on:
   schedule:
-    - cron: '0 * * * *'  # This cron expression means the script will run every hour
+    - cron: '* * * * *'
 jobs:
   run-script:
     runs-on: ubuntu-latest
