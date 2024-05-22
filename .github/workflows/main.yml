@@ -1,0 +1,24 @@
+name: Run Python Script Every Hour
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # This cron expression means the script will run every hour
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Use the required Python version
+
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run Python script
+      run: python main.py
