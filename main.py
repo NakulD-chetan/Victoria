@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from loguru import logger
 from twilio.rest import Client
 import pandas as pd
@@ -21,7 +21,7 @@ def check_scheduled_task(file_path, config):
     utc_time = datetime.now(pytz.utc)
     # Convert UTC time to local time
     local_time = utc_time.astimezone(local_tz)
-    current_time = local_time.strftime('%H:%M')
+    current_time_data = local_time.strftime('%H:%M')
     current_day = local_time.strftime('%A').upper()
     # Read Excel file for the current day's sheet
     df = pd.read_excel(file_path, usecols=columns, sheet_name=current_day, index_col=index)
@@ -30,15 +30,24 @@ def check_scheduled_task(file_path, config):
     if 'CALL_TIME' in df.columns:
         column_list = df['CALL_TIME'].tolist()
         CALL_TIME_LIST = [time_obj.strftime('%H:%M') for time_obj in column_list]
-        if current_time in CALL_TIME_LIST:
-            logger.info(f"There Exist  Task for {current_time}")
-            filter_df = df.iloc[CALL_TIME_LIST.index(current_time)]
-            Message = filter_df['MESSAGE']
-            calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=Message, to=to, from_=from_)
+        current_time = datetime.strptime(current_time_data, "%H:%M")
+        time_margin = timedelta(minutes=5)
 
-        else:
-            logger.info(
-                f"No task scheduled for the this time,and day-{current_time, current_day}")  # No task scheduled for the current time
+        call_scheduled = False
+        for call_time_str in CALL_TIME_LIST:
+            call_time = datetime.strptime(call_time_str, "%H:%M")
+            # logger.info(f"{call_time,current_time,call_time - time_margin,call_time + time_margin}")
+
+            if call_time - time_margin <= current_time <= call_time + time_margin:
+                logger.info(f"There exists a task for {current_ktime.strftime('%H:%M')}")
+                filter_df = df.iloc[CALL_TIME_LIST.index(call_time_str)]
+                Message = filter_df['MESSAGE']
+                calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=Message, to=to, from_=from_)
+                call_scheduled = True
+                break
+
+        if not call_scheduled:
+            logger.info(f"No task scheduled for this time and day - {current_time_data}, {current_day}")
 
 
 
