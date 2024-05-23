@@ -1,0 +1,37 @@
+name: Dynamic Schedule Python Script
+on:
+  schedule:
+    - cron: '06 00 * * TUE'
+    - cron: '27 00 * * TUE'
+    - cron: '37 01 * * TUE'
+    - cron: '47 01 * * TUE'
+    - cron: '52 02 * * TUE'
+    - cron: '22 03 * * TUE'
+    - cron: '57 06 * * TUE'
+    - cron: '07 08 * * TUE'
+    - cron: '07 13 * * TUE'
+    - cron: '27 14 * * TUE'
+    - cron: '27 15 * * TUE'
+    - cron: '02 16 * * TUE'
+    - cron: '31 06 * * TUE'
+
+jobs:
+ run-script:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.x'
+
+        - name: Install dependencies
+          run: |
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+        - name: Run Python script
+          run: python main.py
+    

@@ -1,19 +1,19 @@
 name: Dynamic Schedule Python Script
 on:
   schedule:
-    - cron: '06 00 * * *'
-    - cron: '27 00 * * *'
-    - cron: '37 01 * * *'
-    - cron: '47 01 * * *'
-    - cron: '52 02 * * *'
-    - cron: '22 03 * * *'
-    - cron: '57 06 * * *'
-    - cron: '07 08 * * *'
-    - cron: '07 13 * * *'
-    - cron: '27 14 * * *'
-    - cron: '27 15 * * *'
-    - cron: '02 16 * * *'
-    - cron: '31 06 * * *'
+    - cron: '06 00 * * FRI'
+    - cron: '27 00 * * FRI'
+    - cron: '37 01 * * FRI'
+    - cron: '47 01 * * FRI'
+    - cron: '52 02 * * FRI'
+    - cron: '22 03 * * FRI'
+    - cron: '57 06 * * FRI'
+    - cron: '07 08 * * FRI'
+    - cron: '07 13 * * FRI'
+    - cron: '27 14 * * FRI'
+    - cron: '27 15 * * FRI'
+    - cron: '02 16 * * FRI'
+    - cron: '31 06 * * FRI'
 
 jobs:
  run-script:
