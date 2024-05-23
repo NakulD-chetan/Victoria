@@ -1,36 +1,38 @@
-name: Run Python Based Set Of Crones
+name: Generate Dynamic Schedule
 
 on:
+  push:
+    branches:
+      - '**'
   schedule:
-    - cron: '25 0 * * *'  # 05:55 IST
-    - cron: '50 0 * * *'  # 06:20 IST
-    - cron: '00 2 * * *'  # 07:30 IST
-    - cron: '10 2 * * *'  # 07:40 IST
-    - cron: '15 3 * * *'  # 08:45 IST
-    - cron: '45 3 * * *'  # 09:15 IST
-    - cron: '20 7 * * *'  # 12:50 IST
-    - cron: '30 8 * * *'  # 14:00 IST
-    - cron: '30 13 * * *' # 19:00 IST
-    - cron: '50 14 * * *' # 20:20 IST
-    - cron: '50 15 * * *' # 21:20 IST
-    - cron: '25 16 * * *' # 21:55 IST
-    - cron: '54 6 * * *'  # 12:24 IST
+    - cron: '0 0 * * *'  # Run daily at midnight to update the schedule
+
 jobs:
-  run-script:
+  generate-workflow:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'  # Use the required Python version
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run Python script
-        run: python main.py
+    - name: Generate dynamic workflow
+      run: python yamlcreater.py
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add .github/workflows/dynamic_schedule.yml
+        git commit -m 'Update dynamic schedule workflow'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
