@@ -39,7 +39,7 @@ def check_scheduled_task(file_path, config):
             # logger.info(f"{call_time,current_time,call_time - time_margin,call_time + time_margin}")
 
             if call_time - time_margin <= current_time <= call_time + time_margin:
-                logger.info(f"There exists a task for {current_ktime.strftime('%H:%M')}")
+                logger.info(f"There exists a task for {current_time.strftime('%H:%M')}")
                 filter_df = df.iloc[CALL_TIME_LIST.index(call_time_str)]
                 Message = filter_df['MESSAGE']
                 calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=Message, to=to, from_=from_)
