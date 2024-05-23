@@ -1,4 +1,4 @@
-name: Dynamic Schedule Python Script
+name: Victoria Friday
 on:
   schedule:
     - cron: '06 00 * * FRI'
