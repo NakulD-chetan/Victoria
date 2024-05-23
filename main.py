@@ -31,7 +31,7 @@ def check_scheduled_task(file_path, config):
         column_list = df['CALL_TIME'].tolist()
         CALL_TIME_LIST = [time_obj.strftime('%H:%M') for time_obj in column_list]
         current_time = datetime.strptime(current_time_data, "%H:%M")
-        time_margin = timedelta(minutes=5)
+        time_margin = timedelta(minutes=13)
 
         call_scheduled = False
         for call_time_str in CALL_TIME_LIST:
