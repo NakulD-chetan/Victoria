@@ -1,7 +1,7 @@
 name: Victoria Thursday
 on:
   schedule:
-    - cron: '57 7 * * THU'
+    - cron: '37 13 * * THU'
 
 jobs:
  run-script:
