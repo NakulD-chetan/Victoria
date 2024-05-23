@@ -1,7 +1,7 @@
 name: Dynamic Schedule Python Script
 on:
   schedule:
-    - cron: '03 00 * * *'
+    - cron: '04 00 * * *'
     - cron: '27 00 * * *'
     - cron: '37 01 * * *'
     - cron: '47 01 * * *'
