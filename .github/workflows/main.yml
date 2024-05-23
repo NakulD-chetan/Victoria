@@ -19,7 +19,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-
+    - uses: actions/checkout@v1
+    - name: Setup git user
+      run: |
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
     - name: Install dependencies
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
