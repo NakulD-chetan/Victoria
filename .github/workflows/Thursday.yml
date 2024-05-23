@@ -1,8 +1,7 @@
 name: Victoria Thursday
 on:
   schedule:
-    - cron: '40 7 * * THU'
-    - cron: '13 13 * * THU'
+    - cron: '57 7 * * THU'
 
 jobs:
  run-script:
@@ -11,6 +10,8 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v2
+          with:
+            ref: workflow-test
 
         - name: Set up Python
           uses: actions/setup-python@v2
