@@ -1,19 +1,19 @@
 name: Victoria Sunday
 on:
   schedule:
-    - cron: '06 00 * * SUN'
-    - cron: '27 00 * * SUN'
-    - cron: '37 01 * * SUN'
-    - cron: '47 01 * * SUN'
-    - cron: '52 02 * * SUN'
-    - cron: '22 03 * * SUN'
-    - cron: '57 06 * * SUN'
-    - cron: '07 08 * * SUN'
-    - cron: '07 13 * * SUN'
-    - cron: '27 14 * * SUN'
-    - cron: '27 15 * * SUN'
-    - cron: '02 16 * * SUN'
-    - cron: '31 06 * * SUN'
+    - cron: '25 00 * * SUN'
+    - cron: '50 00 * * SUN'
+    - cron: '00 02 * * SUN'
+    - cron: '10 02 * * SUN'
+    - cron: '15 03 * * SUN'
+    - cron: '45 03 * * SUN'
+    - cron: '20 07 * * SUN'
+    - cron: '30 08 * * SUN'
+    - cron: '30 13 * * SUN'
+    - cron: '50 14 * * SUN'
+    - cron: '50 15 * * SUN'
+    - cron: '25 16 * * SUN'
+    - cron: '00 19 * * SUN'
 
 jobs:
  run-script:

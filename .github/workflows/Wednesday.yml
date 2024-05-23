@@ -1,19 +1,19 @@
 name: Victoria Wednesday
 on:
   schedule:
-    - cron: '06 00 * * WED'
-    - cron: '27 00 * * WED'
-    - cron: '37 01 * * WED'
-    - cron: '47 01 * * WED'
-    - cron: '52 02 * * WED'
-    - cron: '22 03 * * WED'
-    - cron: '57 06 * * WED'
-    - cron: '07 08 * * WED'
-    - cron: '07 13 * * WED'
-    - cron: '27 14 * * WED'
-    - cron: '27 15 * * WED'
-    - cron: '02 16 * * WED'
-    - cron: '31 06 * * WED'
+    - cron: '25 00 * * WED'
+    - cron: '50 00 * * WED'
+    - cron: '00 02 * * WED'
+    - cron: '10 02 * * WED'
+    - cron: '15 03 * * WED'
+    - cron: '45 03 * * WED'
+    - cron: '20 07 * * WED'
+    - cron: '30 08 * * WED'
+    - cron: '30 13 * * WED'
+    - cron: '50 14 * * WED'
+    - cron: '50 15 * * WED'
+    - cron: '25 16 * * WED'
+    - cron: '00 19 * * WED'
 
 jobs:
  run-script:

@@ -1,19 +1,19 @@
 name: Victoria Tuesday
 on:
   schedule:
-    - cron: '06 00 * * TUE'
-    - cron: '27 00 * * TUE'
-    - cron: '37 01 * * TUE'
-    - cron: '47 01 * * TUE'
-    - cron: '52 02 * * TUE'
-    - cron: '22 03 * * TUE'
-    - cron: '57 06 * * TUE'
-    - cron: '07 08 * * TUE'
-    - cron: '07 13 * * TUE'
-    - cron: '27 14 * * TUE'
-    - cron: '27 15 * * TUE'
-    - cron: '02 16 * * TUE'
-    - cron: '31 06 * * TUE'
+    - cron: '25 00 * * TUE'
+    - cron: '50 00 * * TUE'
+    - cron: '00 02 * * TUE'
+    - cron: '10 02 * * TUE'
+    - cron: '15 03 * * TUE'
+    - cron: '45 03 * * TUE'
+    - cron: '20 07 * * TUE'
+    - cron: '30 08 * * TUE'
+    - cron: '30 13 * * TUE'
+    - cron: '50 14 * * TUE'
+    - cron: '50 15 * * TUE'
+    - cron: '25 16 * * TUE'
+    - cron: '00 19 * * TUE'
 
 jobs:
  run-script:

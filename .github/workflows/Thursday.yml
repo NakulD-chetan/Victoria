@@ -1,7 +1,19 @@
 name: Victoria Thursday
 on:
   schedule:
-    - cron: '38 8 * * THU'
+    - cron: '25 00 * * THU'
+    - cron: '50 00 * * THU'
+    - cron: '00 02 * * THU'
+    - cron: '10 02 * * THU'
+    - cron: '15 03 * * THU'
+    - cron: '45 03 * * THU'
+    - cron: '20 07 * * THU'
+    - cron: '30 08 * * THU'
+    - cron: '30 13 * * THU'
+    - cron: '50 14 * * THU'
+    - cron: '50 15 * * THU'
+    - cron: '25 16 * * THU'
+    - cron: '00 19 * * THU'
 
 jobs:
  run-script:

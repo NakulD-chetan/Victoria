@@ -1,37 +1,37 @@
 name: Victoria Monday
 on:
   schedule:
-    - cron: '05 00 * * MON'
-    - cron: '27 00 * * MON'
-    - cron: '37 01 * * MON'
-    - cron: '47 01 * * MON'
-    - cron: '52 02 * * MON'
-    - cron: '22 03 * * MON'
-    - cron: '57 06 * * MON'
-    - cron: '07 08 * * MON'
-    - cron: '07 13 * * MON'
-    - cron: '27 14 * * MON'
-    - cron: '27 15 * * MON'
-    - cron: '02 16 * * MON'
-    - cron: '31 06 * * MON'
+    - cron: '25 00 * * MON'
+    - cron: '50 00 * * MON'
+    - cron: '00 02 * * MON'
+    - cron: '10 02 * * MON'
+    - cron: '15 03 * * MON'
+    - cron: '45 03 * * MON'
+    - cron: '20 07 * * MON'
+    - cron: '30 08 * * MON'
+    - cron: '30 13 * * MON'
+    - cron: '50 14 * * MON'
+    - cron: '50 15 * * MON'
+    - cron: '25 16 * * MON'
+    - cron: '00 19 * * MON'
 
 jobs:
- run-script:
-      runs-on: ubuntu-latest
+  run-script:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-        - name: Install dependencies
-          run: |
-            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-        - name: Run Python script
-          run: python main.py
+      - name: Run Python script
+        run: python main.py
     
