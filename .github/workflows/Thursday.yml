@@ -5,7 +5,7 @@ on:
     - cron: '27 00 * * THU'
     - cron: '50 11 * * THU'
     - cron: '47 01 * * THU'
-    - cron: '52 02 * * THU'
+    - cron: '22 06 * * THU'
     - cron: '22 03 * * THU'
     - cron: '57 06 * * THU'
     - cron: '07 08 * * THU'
