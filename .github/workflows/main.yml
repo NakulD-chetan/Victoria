@@ -1,25 +1,36 @@
-name: Run Python Script Every Hour
+name: Run Python Based Set Of Crones
 
 on:
-  push:
-    branches:
-    - '**'
+  schedule:
+    - cron: '25 0 * * *'  # 05:55 IST
+    - cron: '50 0 * * *'  # 06:20 IST
+    - cron: '00 2 * * *'  # 07:30 IST
+    - cron: '10 2 * * *'  # 07:40 IST
+    - cron: '15 3 * * *'  # 08:45 IST
+    - cron: '45 3 * * *'  # 09:15 IST
+    - cron: '20 7 * * *'  # 12:50 IST
+    - cron: '30 8 * * *'  # 14:00 IST
+    - cron: '30 13 * * *' # 19:00 IST
+    - cron: '50 14 * * *' # 20:20 IST
+    - cron: '50 15 * * *' # 21:20 IST
+    - cron: '25 16 * * *' # 21:55 IST
+    - cron: '54 6 * * *'  # 12:24 IST
 jobs:
   run-script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'  # Use the required Python version
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Use the required Python version
 
-    - name: Install dependencies
-      run: |
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Run Python script
-      run: python main.py
+      - name: Run Python script
+        run: python main.py
