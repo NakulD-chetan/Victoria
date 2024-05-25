@@ -6,4 +6,4 @@ pandas
 openpyxl
 datetime
 pytz
-
+googletrans==4.0.0-rc1

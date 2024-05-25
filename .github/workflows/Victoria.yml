@@ -1,19 +1,14 @@
-name: Victoria Monday
+name: Victoria
+
 on:
-  schedule:
-    - cron: '25 00 * * MON'
-    - cron: '50 00 * * MON'
-    - cron: '00 02 * * MON'
-    - cron: '10 02 * * MON'
-    - cron: '15 03 * * MON'
-    - cron: '45 03 * * MON'
-    - cron: '20 07 * * MON'
-    - cron: '30 08 * * MON'
-    - cron: '30 13 * * MON'
-    - cron: '50 14 * * MON'
-    - cron: '50 15 * * MON'
-    - cron: '25 16 * * MON'
-    - cron: '00 19 * * MON'
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Victoria"]
+    types:
+      - completed
 
 jobs:
   run-script:
@@ -34,4 +29,3 @@ jobs:
 
       - name: Run Python script
         run: python main.py
-    
