@@ -2,9 +2,6 @@ name: Cancel Victoria Saturday if running
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - '*'
 
 jobs:
   cancel:
