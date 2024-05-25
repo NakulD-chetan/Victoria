@@ -10,5 +10,5 @@ jobs:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
         with:
-          workflow_id: ${{ github.workflow }}
+          workflow_id: Victoria Saturday  # Name of the main workflow
           access_token: ${{ secrets.GITHUB_TOKEN }}
