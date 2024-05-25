@@ -144,7 +144,7 @@ def check_scheduled_task(file_path, config):
                 modified_message = generate_motivational_message(NO,MESSAGE,quote, START_TIME, CALL_TIME, END_TIME)
                 logger.info(f"Modified Message: {modified_message}")
             logger.info(f"There exists a task for {current_time_data}")
-            # calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=modified_message, to=to, from_=from_)
+            calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=modified_message, to=to, from_=from_)
         time.sleep(60)
 
 
