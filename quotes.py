@@ -2,6 +2,8 @@ import requests
 from googletrans import Translator
 import datetime
 
+from loguru import logger
+
 
 def fetch_and_translate_quote():
     def fetch_random_quote():
@@ -20,6 +22,7 @@ def fetch_and_translate_quote():
 
     quote = fetch_random_quote()
     if quote:
+        logger.info(quote)
         hindi_quote = translate_to_hindi(quote)
         return hindi_quote
     else:

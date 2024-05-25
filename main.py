@@ -134,7 +134,10 @@ def check_scheduled_task(file_path, config):
 
             else:
                 MESSAGE = data.get("MESSAGE")
-                quote =fetch_and_translate_quote()
+                try:
+                 quote =fetch_and_translate_quote()
+                except Exception as e:
+                    logger.error(e)
                 TASK_NAME = data.get("TASK_NAME")
                 logger.info("Task Name: {}".format(TASK_NAME))
                 CALL_TIME = data.get("CALL_TIME")
