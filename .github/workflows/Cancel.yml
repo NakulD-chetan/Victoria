@@ -10,6 +10,9 @@ jobs:
   cancel_previous:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Node.js dependencies
+        run: npm install node-fetch
+
       - name: Trigger Cancel Workflow
         uses: actions/github-script@v6
         with:
