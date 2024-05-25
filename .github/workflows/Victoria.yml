@@ -1,17 +1,38 @@
-name: Victoria
+name: Victoria Saturday
 
 on:
   push:
     branches:
       - '*'
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Victoria"]
-    types:
-      - completed
 
 jobs:
-  run-script:
+  cancel_previous:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cancel Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fetch = require('node-fetch');
+
+            const response = await fetch(`https://api.github.com/repos/${{ github.repository }}/actions/workflows/cancel.yml/dispatches`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${{ secrets.GITHUB_TOKEN }}`,
+                'Accept': 'application/vnd.github.v3+json',
+              },
+              body: JSON.stringify({
+                ref: '${{ github.ref }}'
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error('Failed to trigger cancel workflow');
+            }
+
+  run_script:
+    needs: cancel_previous
     runs-on: ubuntu-latest
 
     steps:
