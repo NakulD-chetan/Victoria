@@ -8,6 +8,9 @@ import pandas as pd
 import pytz
 from configparser import ConfigParser
 
+from bhagvad import get_gita_slokh_with_name_summary
+from quotes import fetch_and_translate_quote, generate_motivational_message, generate_gita_message
+
 
 def get_task_info_by_call_time(data, call_time):
     # Function to convert time string to minutes for easy comparison
@@ -108,7 +111,7 @@ def check_scheduled_task(file_path, config):
             logger.info(f"No task scheduled for this time and day - {current_time_data}, {current_day}")
         else:
             if last_data.get("CALL_TIME") == current_time_data:
-                logger.info(last_data)
+                name_of_ch,meaning_of_ch,sanskrit_slokh,meaning_of_slok=get_gita_slokh_with_name_summary()
                 TASK_NAME = last_data.get("TASK_NAME")
                 logger.info(f"Task Name: {TASK_NAME}")
                 MESSAGE = last_data.get("MESSAGE")
@@ -116,18 +119,32 @@ def check_scheduled_task(file_path, config):
                 NO = last_data.get("NO")
                 START_TIME = last_data.get("START_TIME")
                 END_TIME = last_data.get("END_TIME")
+                modified_message = generate_gita_message(
+                    message=MESSAGE,
+                    end_time=END_TIME,
+                    call_time=CALL_TIME,
+                    start_time=START_TIME,
+                    no=NO,
+                    slok_meaning=meaning_of_slok,
+                    slok=sanskrit_slokh,
+                    chapter_name=name_of_ch,
+                    chapter_meaning=meaning_of_ch
+                )
+                logger.info(f"Modified Message: {modified_message}")
+
             else:
                 MESSAGE = data.get("MESSAGE")
-
+                quote =fetch_and_translate_quote()
                 TASK_NAME = data.get("TASK_NAME")
                 logger.info("Task Name: {}".format(TASK_NAME))
                 CALL_TIME = data.get("CALL_TIME")
                 NO = data.get("NO")
                 START_TIME = data.get("START_TIME")
                 END_TIME = data.get("END_TIME")
-
+                modified_message = generate_motivational_message(NO,MESSAGE,quote, START_TIME, CALL_TIME, END_TIME)
+                logger.info(f"Modified Message: {modified_message}")
             logger.info(f"There exists a task for {current_time_data}")
-            calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=MESSAGE, to=to, from_=from_)
+            # calling_on_phone(account_sid=account_sid, auth_token=auth_token, Message=modified_message, to=to, from_=from_)
         time.sleep(60)
 
 
