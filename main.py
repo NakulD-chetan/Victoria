@@ -74,11 +74,16 @@ def fetch_airtable_data(config,table_name,call_time_input):
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        logger.info("Data Successfully Fetched From Airtable through Internet Connection")
-        records = response.json().get('records', [])
-        sorted_records = sorted(records, key=lambda x: x['fields']['NO'])
-        result,last_task = get_task_info_by_call_time(sorted_records, call_time_input)
-        return result,last_task
+        try:
+            logger.info("Data Successfully Fetched From Airtable through Internet Connection")
+            records = response.json().get('records', [])
+            sorted_records = sorted(records, key=lambda x: x['fields']['NO'])
+
+            result,last_task = get_task_info_by_call_time(sorted_records, call_time_input)
+            return result,last_task
+        except Exception as e:
+            logger.error(f"Error Occure in fetch_airtable_data function-{e}")
+            return None,None
 
 
     else:
@@ -103,10 +108,10 @@ def check_scheduled_task(file_path, config):
         current_time_data = local_time.strftime('%H:%M')
         current_day = local_time.strftime('%A').upper()
         # Read Excel file for the current day's sheet
-        try:
-         data,last_data = fetch_airtable_data(config, table_name=current_day,call_time_input=current_time_data )
-        except Exception as e:
-            logger.error(e)
+        data,last_data = fetch_airtable_data(config, table_name='SUNDAY',call_time_input=current_time_data )
+        logger.info(f"data-{data}")
+        logger.info((f"last_data-{last_data}"))
+
         if data is None:
             logger.info(f"No task scheduled for this time and day - {current_time_data}, {current_day}")
         else:
