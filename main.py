@@ -90,7 +90,7 @@ def fetch_airtable_data(config,table_name,call_time_input):
         print(f"Failed to fetch data. Status code: {response.status_code}")
         return None,None
 
-def check_scheduled_task(file_path, config):
+def check_scheduled_task( config):
     # Read configuration
     logger.info("Reading Data From Excel File")
     columns = config['EXCEL']['columns'].split(",")
@@ -176,6 +176,6 @@ config.read('config.ini')
 logger.info("Reading Configuration file")
 
 logger.info("Reading Data From Confugration File is Done ")
-check_scheduled_task(config['EXCEL']['path'], config)
+check_scheduled_task(config)
 
 
