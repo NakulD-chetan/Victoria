@@ -108,7 +108,7 @@ def check_scheduled_task( config):
         current_time_data = local_time.strftime('%H:%M')
         current_day = local_time.strftime('%A').upper()
         # Read Excel file for the current day's sheet
-        data,last_data = fetch_airtable_data(config, table_name='SUNDAY',call_time_input=current_time_data )
+        data,last_data = fetch_airtable_data(config, table_name=current_day,call_time_input=current_time_data )
 
         if data is None:
             logger.info(f"No task scheduled for this time and day - {current_time_data}, {current_day}")
