@@ -90,13 +90,16 @@ def fetch_airtable_data(config,table_name,call_time_input):
         print(f"Failed to fetch data. Status code: {response.status_code}")
         return None,None
 
-def check_scheduled_task(file_path, config):
+def check_scheduled_task(config):
     # Read configuration
     logger.info("Reading Data From Excel File")
     columns = config['EXCEL']['columns'].split(",")
     index = columns[0]
     account_sid = config['Twilio']['account_sid']
+    logger.info(account_sid)
+
     auth_token = config['Twilio']['auth_token']
+    logger.info(auth_token)
     url = config['Twilio']['url']
     to = config['Twilio']['to_phone']
     from_ = config['Twilio']['from_phone']
@@ -108,7 +111,7 @@ def check_scheduled_task(file_path, config):
         current_time_data = local_time.strftime('%H:%M')
         current_day = local_time.strftime('%A').upper()
         # Read Excel file for the current day's sheet
-        data,last_data = fetch_airtable_data(config, table_name='SUNDAY',call_time_input=current_time_data )
+        data,last_data = fetch_airtable_data(config, table_name=current_day,call_time_input=current_time_data )
 
         if data is None:
             logger.info(f"No task scheduled for this time and day - {current_time_data}, {current_day}")
@@ -176,6 +179,6 @@ config.read('config.ini')
 logger.info("Reading Configuration file")
 
 logger.info("Reading Data From Confugration File is Done ")
-check_scheduled_task(config['EXCEL']['path'], config)
+check_scheduled_task(config)
 
 
