@@ -95,10 +95,10 @@ def check_scheduled_task(config):
     logger.info("Reading Data From Excel File")
     columns = config['EXCEL']['columns'].split(",")
     index = columns[0]
-    account_sid = config['Twilio']['account_sid']
+    account_sid = os.getenv('account_sid')
     logger.info(account_sid)
 
-    auth_token = config['Twilio']['auth_token']
+    auth_token = os.getenv('auth_token')
     logger.info(auth_token)
     url = config['Twilio']['url']
     to = config['Twilio']['to_phone']
