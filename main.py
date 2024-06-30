@@ -61,8 +61,8 @@ def get_task_info_by_call_time(data, call_time):
 
 def fetch_airtable_data(config,table_name,call_time_input):
     logger.info("Loading airtable config data from json")
-    api_key=config['AIRTABLE']['api_key']
-    base_id = config['AIRTABLE']['base_id']
+    api_key=os.getenv('API_KEY')
+    base_id = os.getenv('BASE_ID')
     # logger.info(f"table_name = {table_name}")
     logger.info("Data Loaded Successfully from Json")
 
@@ -100,9 +100,9 @@ def check_scheduled_task(config):
 
     auth_token = os.getenv('AUTH_TOKEN')
     logger.info(auth_token)
-    url = config['Twilio']['url']
-    to = config['Twilio']['to_phone']
-    from_ = config['Twilio']['from_phone']
+    url = os.getenv('URL')
+    to = os.getenv('TO_PHONE')
+    from_ = os.getenv('FROM_PHONE')
     while True:
         local_tz = pytz.timezone('Asia/Kolkata')
         utc_time = datetime.now(pytz.utc)
