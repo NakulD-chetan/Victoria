@@ -25,5 +25,11 @@ jobs:
       - name: Run Python script
         env:
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+          API_KEY: ${{ secrets.API_KEY }}
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+          BASE_ID: ${{ secrets.BASE_ID }}
+          FROM_PHONE: ${{ secrets.FROM_PHONE }}
+          TO_PHONE: ${{ secrets.TO_PHONE }}
+          URL: ${{ secrets.URL }}
+
         run: python main.py
