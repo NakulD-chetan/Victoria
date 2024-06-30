@@ -97,7 +97,6 @@ def check_scheduled_task(config):
     index = columns[0]
     account_sid = os.getenv('ACCOUNT_SID')
     logger.info(account_sid)
-
     auth_token = os.getenv('AUTH_TOKEN')
     logger.info(auth_token)
     url = os.getenv('URL')
