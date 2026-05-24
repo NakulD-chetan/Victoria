@@ -1,6 +1,11 @@
+
+https://drive.google.com/drive/folders/1Mj1x3x4oX05vzpPwuzvIHgWqiUVZGv7f
+
 # File Formats Deep Dive — Index
 
 > This folder goes **deep inside** each file format — byte-level structure, encoding types, internal mechanics — the kind of detail interviewers ask to test whether you **truly understand** Parquet, Avro, ORC, Delta, Iceberg, etc.
+
+
 
 ---
 
